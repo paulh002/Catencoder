@@ -70,7 +70,6 @@ void loop()
 	}
 
 	int count_button = (int)Rotary.getPosition();
-	Serial.println((int)(Rotary.getDirection()));
 	Rotary.setPosition(0);
 	if (count_button)
 	{	// Volume
