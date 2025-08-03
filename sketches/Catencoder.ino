@@ -4,7 +4,7 @@
 #include <RotaryEncoder.h>
 
 /*-------------------------------------------------------
-   Optical Rotary encoder settings (used for frequency)
+   Optical Rotary encoder settings (used for vfo frequency)
 --------------------------------------------------------*/
 #define PULSE_INPUT_PIN 12// Rotaty Encoder A
 #define PULSE_CTRL_PIN 11  // Rotaty Encoder B
