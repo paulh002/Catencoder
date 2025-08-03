@@ -30,8 +30,8 @@ void xTaskDecoder(void *arg)
 void setup()
 {
 	TaskHandle_t dHandle = NULL;
-	
-	Serial.begin(115200);
+
+	Serial.begin(921600);
 
 	pinMode(TXRX_SWITCH, INPUT);
 	
