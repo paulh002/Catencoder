@@ -1,3 +1,4 @@
+#include <Arduino.h>
 #include <ESP32Encoder.h>
 #include <FT891_CAT.h>
 #include <Cat.h>
@@ -6,8 +7,8 @@
 /*-------------------------------------------------------
    Optical Rotary encoder settings (used for vfo frequency)
 --------------------------------------------------------*/
-#define PULSE_INPUT_PIN 12// Rotaty Encoder A
-#define PULSE_CTRL_PIN 11  // Rotaty Encoder B
+#define PULSE_INPUT_PIN 11// Rotaty Encoder A
+#define PULSE_CTRL_PIN 12  // Rotaty Encoder B
 
 #define PIN_IN1 4 // Rotaty Encoder B
 #define PIN_IN2 6 // Rotaty Encoder B
@@ -31,11 +32,12 @@ void setup()
 {
 	TaskHandle_t dHandle = NULL;
 
-	Serial.begin(921600);
+	Serial.begin(115200);
+	while (!Serial)
+		;
 
 	pinMode(TXRX_SWITCH, INPUT);
-	
-	//ESP32Encoder::useInternalWeakPullResistors = puType::none;
+	ESP32Encoder::useInternalWeakPullResistors = puType::none;
 	Encoder.attachHalfQuad(PULSE_INPUT_PIN, PULSE_CTRL_PIN);
 	xTaskCreate(xTaskDecoder, "xTaskDecoder", 4096, NULL, 2, &dHandle);
 	CatInterface.begin();
@@ -104,5 +106,5 @@ void loop()
 			currentRxtx = TX_OFF;
 		}
 	}
-	vTaskDelay(1);
+	vTaskDelay(10);
 }
